@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#wrap{
+	width:1200px;
+	height:900px;
+	margin: 0 auto;
+}
+header {
+	height:100px;
+	background-color:#cccccc;
+}
+.contents {
+	/*height:500px;*/
+}
+.contents > .input-box {
+	width: 400px;
+	/*height: 500px;*/
+	background-color:#cccccc;
+}
+footer {
+	height: 70px;
+	background-color:#cccccc;
+}
