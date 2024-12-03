@@ -24,4 +24,23 @@
 			)
  				
  	</insert>
+ 	
+ 	
+ 	<select id="selectUser" parameterType="map" resultType="com.jhb0430.memo.user.domain.User">
+ 		SELECT
+ 				`loginId`
+				, `password`
+				, `name`
+				, `email`
+				, `createdAt`
+				, `updatedAt`
+		FROM 	
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+		AND 
+			`password` = #{password}	
+ 			
+ 	</select>
+ 	
  </mapper>

@@ -1,10 +1,10 @@
 package com.jhb0430.memo.user.service;
 
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhb0430.memo.common.MD5HashingEncoder;
+import com.jhb0430.memo.user.domain.User;
 import com.jhb0430.memo.user.repository.UserRepository;
 
 @Service
@@ -43,6 +43,18 @@ public class UserService {
 		else {
 			return false;
 		}
+	}
+	
+	
+	// 로그인 - 일치하는 행 조회
+	public User getUser(
+			String loginId
+			,String password
+			){
+		
+		User user = userRepository.selectUser(loginId, password);
+	
+		return user;
 	}
 	
 }
