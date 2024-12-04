@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 
 @RequestMapping("/user")
 @Controller
@@ -19,14 +22,17 @@ public class UserController {
 		return "user/login";
 	}
 	
-	// 회원가입 하는 기능 만들기
-//	@GetMapping("/create")
-//	public joinUser{
-//		
-//		return "user/join";
-//	}
-//	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		
+		return "redirect:/user/login-view";
+	}
 	
-	//로그인 하는 기능 만들기 
 	
 }

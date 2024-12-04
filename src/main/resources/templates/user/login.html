@@ -15,7 +15,7 @@
 					<input type="password" class="form-control mt-3" placeholder="비밀번호" id="passwordInput">
 				<button type="button" class="btn btn-secondary btn-block w-100 mt-4" id="loginBtn">로그인</button>
 				
-					<div class="text-center mt-3"><a href="/user/join-view">회원가입</a></div>
+					<div class="text-center my-3"><a href="/user/join-view">회원가입</a></div>
 				<!-- 
 				</div>
 				 -->
@@ -49,10 +49,10 @@
 					,data:{"loginId":loginId,"password":password}
 					, success:function(response){
 						if(response.result = "success"){
-						alert("로그인 성공");
-						//location.href="#";
+						//alert("로그인 성공");
+						location.href="/post/list-view";
 						} else {
-						alert("로그인 실패");
+						alert("아이디와 비밀번호를 확인해주세요");
 						}
 					}
 					, error:function(){

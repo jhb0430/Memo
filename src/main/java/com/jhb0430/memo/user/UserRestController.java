@@ -3,7 +3,6 @@ package com.jhb0430.memo.user;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jhb0430.memo.user.domain.User;
 import com.jhb0430.memo.user.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/user")
 @RestController
@@ -53,6 +55,7 @@ public class UserRestController {
 	public Map<String, String> login(
 			@RequestParam("loginId") String loginId
 			,@RequestParam("password") String password
+			, HttpServletRequest request 
 			){
 		
 		User user = userService.getUser(loginId, password);
@@ -60,6 +63,14 @@ public class UserRestController {
 		Map<String, String> resultMap = new HashMap<>();
 			
 		if(user != null) {
+			
+			HttpSession session = request.getSession();
+			
+			// user id, user name
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userName", user.getName());
+//			session.setAttribute("password", user.getPassword());
+			
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
@@ -67,6 +78,11 @@ public class UserRestController {
 		}
 		return resultMap;
 	}
+	
+
+	
+	
+	
 	
 	
 }

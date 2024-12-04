@@ -52,7 +52,9 @@ public class UserService {
 			,String password
 			){
 		
-		User user = userRepository.selectUser(loginId, password);
+		String encodingPassword = MD5HashingEncoder.encode(password);
+		
+		User user = userRepository.selectUser(loginId, encodingPassword);
 	
 		return user;
 	}
