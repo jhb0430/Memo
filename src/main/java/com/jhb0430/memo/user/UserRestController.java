@@ -49,7 +49,7 @@ public class UserRestController {
 	
 	// 로그인
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public Map<String, String> login(
 			@RequestParam("loginId") String loginId
 			,@RequestParam("password") String password
