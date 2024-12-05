@@ -5,43 +5,37 @@
      layout:decorate="~{layout/default}">
      
 		<section layout:fragment="contents" class="contents d-flex justify-content-center">
-		<div class="col-9 m-5">
-			<h1 class="text-center my-5">메모 리스트</h1>
+		<div class="contents-box my-5">
+			<h1 class="text-center mb-5">메모 리스트</h1>
 			<table class="table text-center">
-				<thead class="font-weight-bold bg-secondary">
+				<thead class="font-weight-bold bg-cc">
 					<tr>
-						<th>no</th>
-						<th>메모</th>
-						<th>이름</th>
+						<th>No</th>
+						<th>제목</th>
+						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>djwjdsdgsdgn</td>
-						<td>djwjsdgsdggsdgsdgsdgdgdn</td>
-						<td>djwjdn</td>
-					</tr>
-					<tr>
-						<td>djwjdn</td>
-						<td>djwjdn</td>
-						<td>djwjdn</td>
-					</tr>
-					<tr>
-						<td>djwjdn</td>
-						<td>djwjdn</td>
-						<td>djwjdn</td>
+					<tr th:each="memo :${memoList}">
+						<td th:text="${memo.id}">djwjdsdgsdgn</td>
+						<td th:text="${memo.title}">djwjsdgsdggsdgsdgsdgdgdn</td>
+						<td th:text="${#temporals.format(memo.createdAt,'yyyy-MM-dd')}">djwjdn</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="my-4 d-flex justify-content-end">
-			<button type="button" class="btn btn-secondary">메모쓰기 </button>
+			<a href="/post/create-view" class="btn bg-cc">메모쓰기 </a>
 			</div>
 		</div>
 
 		</section>
 
 
-<script layout:fragment="script"></script>
+<script layout:fragment="script">
+
+// 로그인 한 작성자가 쓴 메모만 볼 수 있도록 
+
+</script>
 
 
 </html>
