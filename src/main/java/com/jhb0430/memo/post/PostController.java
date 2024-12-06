@@ -6,9 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jhb0430.memo.post.domain.Post;
 import com.jhb0430.memo.post.service.PostService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/post")
 @Controller
@@ -28,11 +31,14 @@ public class PostController {
 	
 	
 	@GetMapping("/list-view")
-	public String memoList( Model model	) {
+	public String memoList( Model model
+			, HttpSession session) {
+		
+		int userId = (Integer)session.getAttribute("userId");
 		
 		// 메모 조회
 		
-		List<Post> memoList = postService.getPostList();
+		List<Post> memoList = postService.getPostList(userId);
 		
 		model.addAttribute("memoList",memoList);
 		
@@ -48,6 +54,20 @@ public class PostController {
 	public String createMemo() {
 		
 		return "post/input";
+	}
+	
+	
+	@GetMapping("/detail-view")
+	public String memoDetail(@RequestParam("id") int id
+							, Model model) {
+		
+		
+		
+		Post memo = postService.getPost(id);
+		
+		model.addAttribute("memo",memo);
+		
+		return "post/detail";
 	}
 	
 	

@@ -8,8 +8,8 @@
 		<div class="contents-box my-5">
 			<h2 class="text-center mt-4">메모 입력</h2>
 			<input type="text" class="form-control" placeholder="제목을 입력하세요" id="titleInput">
-			<textarea class="form-control mt-2" rows="10" id="contentsInput"></textarea>
-			<input type="file" class="mt-2">
+			<textarea class="form-control mt-2" rows="10" placeholder="내용을 입력하세요" id="contentsInput"></textarea>
+			<input type="file" class="mt-2" id="fileInput">
 			<div class="d-flex justify-content-between mt-3">
 				<a href="/post/list-view" class="btn bg-cc">목록으로</a>
 				<button type="button" class="btn bg-cc" id="saveBtn">저장</button>
@@ -27,6 +27,8 @@
 			let title = $("#titleInput").val();
 			let contents = $("#contentsInput").val();
 			
+			let file = $("#fileInput")[0].files[0]; // 여러개의 파일 처리할땐 .files 단독으로 쓰면 된다
+			
 			if(title == ""){
 				alert("제목을 입력하세요");
 				return;
@@ -37,12 +39,23 @@
 			}
 			
 			
+			// 파일은 특정 객체를 통해서 전달해야한다
+			let formData = new FormData();
+			formData.append("title",title);
+			formData.append("contents",contents);
+			formData.append("file",file);
+			
+			
 			
 			$.ajax({
 					type:"post"
-					,url:"/post/create"
-					,data:{"title":title, "contents":contents}
-					,success:function(response){
+					, url:"/post/create"
+					, data:formData
+					, enctype:"multiPart/form-data" // 파일 업로드 추가 옵션
+					, processData:false // 파일 업로드 추가 옵션
+					,contentType:false // 파일 업로드 추가 옵션
+					//,data:{"title":title, "contents":contents}
+					, success:function(response){
 						if(response.result == "success"){
 						location.href ="/post/list-view";
 						} else {

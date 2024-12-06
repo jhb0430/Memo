@@ -33,11 +33,11 @@ public class Post {
 	private String contents;
 	@Column(name="imagePath")
 	private String imagePath;
-	@CreationTimestamp
 	@Column(name="createdAt")
+	@CreationTimestamp
 	private LocalDateTime createdAt;
-	@UpdateTimestamp
 	@Column(name="updatedAt")
+	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
 	

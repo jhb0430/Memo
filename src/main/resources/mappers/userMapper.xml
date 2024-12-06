@@ -28,6 +28,7 @@
  	
  	<select id="selectUser" parameterType="map" resultType="com.jhb0430.memo.user.domain.User">
  		SELECT
+ 				`id`
  				`loginId`
 				, `password`
 				, `name`
