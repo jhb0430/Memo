@@ -35,11 +35,11 @@ public class PostService {
 		
 		
 		Post post = Post.builder()
-						.userId(userId)
-						.title(title)
-						.contents(contents)
-						.imagePath(imagePath)
-						.build();
+				.userId(userId)
+				.title(title)
+				.contents(contents)
+				.imagePath(imagePath)
+				.build();
 		
 		try {
 //			Post result = 

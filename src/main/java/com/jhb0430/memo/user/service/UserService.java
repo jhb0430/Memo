@@ -16,7 +16,7 @@ public class UserService {
 	//생성자를 통해서 적용하는 방식 사용해보좌 
 	// 생성자로 구성해두면 꼭 오토와이어드(스프링을 이욯한 게 )가 아니어도 활용할 수 있게 된다 ^ㅁ^ 
 	// autowired를 위한 생성자만 존재하는 경우 생략 가능 
-	@Autowired
+//	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}

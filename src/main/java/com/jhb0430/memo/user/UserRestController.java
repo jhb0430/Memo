@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jhb0430.memo.user.domain.User;
 import com.jhb0430.memo.user.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/user")
@@ -55,7 +54,8 @@ public class UserRestController {
 	public Map<String, String> login(
 			@RequestParam("loginId") String loginId
 			,@RequestParam("password") String password
-			, HttpServletRequest request 
+//			, HttpServletRequest request 
+			, HttpSession session 
 			){
 		
 		User user = userService.getUser(loginId, password);
@@ -64,7 +64,7 @@ public class UserRestController {
 			
 		if(user != null) {
 			
-			HttpSession session = request.getSession();
+//			HttpSession session = request.getSession();
 			
 			// user id, user name
 			session.setAttribute("userId", user.getId());
