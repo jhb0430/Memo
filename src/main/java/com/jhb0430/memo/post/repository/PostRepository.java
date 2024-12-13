@@ -11,4 +11,7 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	
 	   // WHERE `userId` = #{} ORDER BY `id` DESC
 	   public List<Post> findByUserIdOrderByIdDesc(int userId);
+	   
+	   // SET ` title` = ?? , `contents` = `하하` , `updatedAt` = now() WHERE `id` = 3;
+	   
 }
