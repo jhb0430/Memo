@@ -40,6 +40,11 @@ public class PermissionInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
+		
+		// 로그인이 되어있는 경우 사용자와 관련된 페이지 접근을 막는다
+		// 메모 리스트 페이지로 이동한다 
+
+		
 		return true;
 		
 	}
