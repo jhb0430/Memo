@@ -1,10 +1,12 @@
 package com.jhb0430.memo.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.jhb0430.memo.common.FileManager;
+import com.jhb0430.memo.interceptor.PermissionInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -18,6 +20,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //		.addResourceLocations("file:///" + "D:\\jh240729\\spring project\\upload\\memo/" );
 	}
 	
+	@Override
+	public void addInterceptors (InterceptorRegistry registry) {
+		
+		registry.addInterceptor(new PermissionInterceptor())
+		.addPathPatterns("/**")
+		.excludePathPatterns("/user/logout","/static/**","/images/**");
+		
+	}
 	
 }
 
